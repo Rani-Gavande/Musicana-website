@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile-page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body{
+            background:black;
+            color: white;
+            font-family: serif;
+            
+        }
+        .profile-content{
+            color:white;
+            width:400px;
+            height: 550px;
+            margin: auto;
+            border-radius: 20px;
+            background:black;
+            border: 2px solid rgb(255, 0, 157);   
+        }
+        .profile-Details{
+            color: white;
+            display: flex;
+            width:300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .profile-image img{
+            width:80px;
+            height: 80px;
+            border-radius: 50px;
+            background-color: white;
+            margin-top: 13px;
+            margin-right: 10px;
+        }
+        ul{
+            margin: 0px;
+            margin-top: 30px;
+            padding: 0px;
+            height:100px;
+            margin-left: 10px;
+        }
+        ul li{
+            list-style: none;
+        }
+        .user{
+            font-size: 25px;
+            margin: 0px;
+            margin: bottom 8px;
+        }
+        .email{
+            font-size: 15px;
+            margin: 0px;
+            margin-bottom: 10px;
+        } 
+        .edit-btn{
+            border: none;
+            outline: none;
+            padding: 8px;
+            color: white;
+            background-color:#ff0368;
+            border-radius: 5px;
+        }
+        .separator-line span{ 
+            display: block;
+            width: 300px;
+            height: 2px;
+            margin-left:auto;
+            margin-right: auto;
+            background-color: white;
+            margin: 20px 0;
+        }
+        .details1 li{
+	        position: relative;
+            margin-top: 20px;
+            list-style: none;
+            font-size: 20px;
+        }
+        .details1 li span{
+            
+            align-items: center;
+            margin-left: 60px;
+        }
+        li a{
+            margin-top: 3px;
+	        position: absolute;
+            margin-left: 30px;
+            text-decoration: none;
+            color:white;
+        }
+        body {
+    background-color: #000; /* Dark background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.edit-profile-card {
+    background-color: #111;
+    padding: 30px;
+    border: 2px solid #ff0590;
+    border-radius: 20px;
+    width: 350px;
+    color: white;
+    text-align: center;
+}
+
+.edit-profile-card h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.edit-profile-card label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.edit-profile-card input[type="text"],
+.edit-profile-card input[type="email"],
+.edit-profile-card input[type="password"],
+.edit-profile-card input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: #222;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.edit-profile-card img {
+    border-radius: 50%;
+    border: 2px solid #ff0590;
+}
+
+.edit-profile-card button {
+    background-color: #ff0590;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.edit-profile-card button:hover {
+    background-color: #ff007f;
+}
+
+    </style>
+</head>
+<body>
+   <div class="edit-profile-card">
+    {%if request.session.logged_in%}
+    {%for i in details%}
+    <h2>Edit Profile</h2>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Username:</label>
+        <input type="text" name="username" value="{{ i.Username}}">
+
+        <label>Email:</label>
+        <input type="email" name="email" value="">
+
+        <label>Phone:</label>
+        <input type="text" name="phone" value="{{ i.phone }}">
+        <label>Profile Image:</label>
+        <br>
+        {% if i.profile %}
+            <div style="display:flex;">
+                <p style="margin-top: 0px;">Currently:-</p>
+                <p style="margin-top: 0px;"><a href="{{ i.profile.url }}" style="text-decoration: none; color: rgb(83, 134, 244);">{{ i.profile.url }}</a></p>
+            </div>
+            <div style="display:flex;">
+            <p style="margin-top: 10px; ">Change:-</p>  
+            <input type="file" name="profile" style="background: transparent; margin-left: 20px; margin-top: 0px;">
+            </div>
+            {%else%}
+        <div style="display:flex;">
+            <p style="margin-top: 10px; ">Change:-</p>  
+            <input type="file" name="profile" style="background: transparent; margin-left: 20px; margin-top: 0px;">
+            </div>
+        {%endif%}
+
+        <button type="submit">Edit</button>
+    </form>
+    {%endfor%}
+    {%endif%}
+</div>
+</body>
+</html>

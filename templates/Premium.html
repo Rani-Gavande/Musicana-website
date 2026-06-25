@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>Premium page</title>
+<style>
+    body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: white;
+}
+
+.Back-btn{
+    top:10px;
+    background-color:#FF0590;
+    width: 100px;
+    height: 30px;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-radius: 10px;
+
+}
+.Back-btn a{ 
+    text-decoration: none;
+    color:black;
+    font-size: 20px;
+    
+}
+.Back-btn .material-symbols-outlined{
+    position: relative;
+    top:3px;
+    font-size: 20px;
+    color: black;
+}
+.title-premium{
+    display: flex;
+}
+
+.premium-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+.premium-section h2 {
+    color: #FF0590;
+    font-size: 2.5em;
+    margin-left: 200px;
+}
+.subtitle {
+    color: #ccc;
+    margin-bottom: 40px;
+}
+
+/* Plans */
+.plans {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.plan-card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+.plan-card.highlight {
+    border: 2px solid #FF0590;
+}
+.plan-card h3 {
+    color: #FF0590;
+}
+.price {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+}
+.plan-card li {
+    margin: 10px 0;
+}
+.plan-card button {
+    background: #FF0590;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.plan-card button:hover {
+    background: #e0057e;
+}
+
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+<section class="premium-section">
+    <div class="title-premium">
+    <P class="Back-btn" ><span class="material-symbols-outlined back-iocn">
+arrow_back_ios_new
+</span><a href="/"> Back</a></P>
+    <h2>Upgrade to Musicana Premium</h2>
+    </div>
+    <p class="subtitle">Unlimited Music, Ad-Free Experience, and More!</p>
+
+    <div class="plans">
+        <div class="plan-card">
+            <h3>Basic</h3>
+            <p class="price">₹99 / month</p>
+            <ul>
+                <li>✔ Unlimited skips</li>
+                <li>✔ Ad-free music</li>
+                <li>✔ High-quality audio</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+
+        <div class="plan-card highlight">
+            <h3> Premium</h3>
+            <p class="price">₹199 / month</p>
+            <ul>
+                <li>✔ All Basic features</li>
+                <li>✔ Download songs offline</li>
+                <li>✔ Exclusive content</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+
+        <div class="plan-card">
+            <h3>Family</h3>
+            <p class="price">₹299 / month</p>
+            <ul>
+                <li>✔ All Premium features</li>
+                <li>✔ Up to 6 accounts</li>
+                <li>✔ Parental controls</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+    </div>
+</section>
+</body>
+</html>

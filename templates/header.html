@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/header.css">
+     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="left-side">
+        <div class="sidebar-icon" onclick="visiblemenu()">
+            <span class="material-symbols-outlined" id="sidebar">menu</span>
+        </div>
+        <div class="music-logo">
+            <img src="/static/musiclogo4.png" alt="Logo" width="55px" height="55px" class="music-logo-img">
+        </div>
+
+        <div class="musicana">
+            <p><span>Musicana</span></p>
+        </div>
+        </div>
+        <div class="search-wrapper">
+            <input type="search" id="searchInput" placeholder="What do you want to listen ?">
+            <span class="material-symbols-outlined search-icon" id="searchBtn">search</span>
+        </div>
+        <div class="nav" align="center">
+            <ul>
+                <li>Language<span></span></li>
+                {%if request.session.logged_in%}
+                <li><a href="/profile">profile<span></span></a></li>
+                <li><a href="/logout">Logout<span></span></a></li>
+                {%else%}
+                <li id="opensignup">SignUp<span></span></li>
+                <li id="openLogin">Login<span></span></li>
+                {%endif%}
+            </ul>
+        </div>
+</div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

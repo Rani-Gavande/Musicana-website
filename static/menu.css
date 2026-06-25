@@ -1,0 +1,89 @@
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color:rgb(13, 13, 13);
+    color:white;
+    overflow-y:auto; 
+	height: 100vh;
+    overflow-y: auto;
+}
+.sidebar .sub-menu{
+	position: relative;
+	margin-top: 0px;
+	margin-left: 5px;
+	width:220px;
+	height: 170px;
+	border-bottom: 2px solid white;
+}
+.sidebar ul{
+	font-size: 20px;
+	margin-left: 0;
+	padding-left:5px ;
+
+}
+.sidebar ul li{
+	align-items: center;
+	position: relative;
+	margin-top: 10px;
+	list-style: none;
+	font-size: 16px;
+	width: 200px;
+	height: 25px;
+	border-radius: 10px;
+	padding: 7px;
+}
+.sidebar ul li a {
+	position: relative;
+	margin: 0px;
+	text-decoration: none;
+	color:white;
+	margin-left: 0px;
+	display: flex;
+}
+.sidebar ul li a p{
+	margin: 8px;
+	margin-bottom: auto;
+	text-decoration: none;
+	color:white;
+	margin-left: 0px;
+}
+.sidebar ul li a span{
+	margin-top: 3px;
+ margin-right: 20px;
+}
+.sidebar ul li:hover{
+	background-color: var(--sidebar-btn);
+}
+
+.Library{
+	position: relative;
+	margin-top: 5px;
+	width: 220px;
+	height: px;
+	padding: 0px;
+	margin-left: 5px;
+	border-bottom: 2px solid white;
+}
+.setting-group{
+	position: relative;
+	margin-top: 5px;
+	padding: 0px;
+	margin-left: 0px;
+}
+.sidebar::-webkit-scrollbar{
+    width:0px;
+}
+.sidebar:hover::-webkit-scrollbar{
+    width:8px;
+}
+.sidebar::-webkit-scrollbar-tarck{
+background: #1e1e1e;
+}
+.sidebar::-webkit-scrollbar-thumb{
+    background-color: #888;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+ .sidebar::-webkit-scrollbar-thumb:hover{
+    background-color: #aaa;
+ }

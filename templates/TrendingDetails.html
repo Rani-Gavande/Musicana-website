@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audio Progress</title>
+<style>
+    body{
+                background-color: black;
+            }
+            .audio-trendeing{
+                display: block;
+            }
+            .song-details{
+                margin-top:55px ;
+                margin-left: 10px;
+                margin-right: 10px;
+                height: 100vh;
+                width: 300px;
+                color:white;
+                border-radius:15px;
+                background: linear-gradient(to top,#fd008b,#000000,#000000);
+                z-index: -1;
+            }
+            .card-first{
+                border-radius : 10px 10px 0px 0px;
+                height:370px;
+            }
+            .song-image1{
+                position: relative;
+                top: 30px;
+                width:150px;
+                height: 150px;
+                background-color: #7c7e7e;
+                align-items: center;
+            }
+            .sn-an-bu{
+                position: relative;
+                margin-top: 50px;
+                padding: 0px;
+            }
+            .sn-an-bu li{
+                list-style: none;
+            }
+            .sn-an-bu li .sn{
+                font-size: 25px;
+                font-family:serif;
+                margin: 0px;
+                font-weight: bold;
+            }
+             .sn-an{
+                margin-top: 10px;
+                border: 0.5px  white;
+                border-style: solid;
+                width: 180px;
+            }
+            .sn-an-bu li .an{
+                font-size: 18px;
+                padding: 0px;
+                margin: 0px;
+                margin-top: 5px;
+            }
+            .duration{
+                margin-top: 10px;
+                margin-bottom: 5px;
+            }
+            .card-second{
+                width:100%;
+                height: 200px;
+                margin-top: 0px;
+            }
+            .play{
+                position: relative;
+                border:none;
+                border-radius: 50%;
+                background: transparent;
+            }
+            .play span{
+                color:white;
+                font-size: 30px;
+                padding: 0px;
+
+            }
+            .like{
+                background-color: transparent;
+                border: none;
+                outline: none;
+                color:white;
+            }
+            .like span{
+                font-size: 30px;
+            }
+            .like.red {
+        color: red;
+    }
+
+            .playlist{
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+            .playlist span{
+                color:white;
+                font-size: 30px;
+            }
+            .downlod-btn{
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+            .downlod-btn span{
+                color:white;
+                font-size: 30px;
+            }
+
+.progress-wrapper{
+        display: flex;
+        padding: 0px;
+
+    }
+/* Container for progress */
+.progress-container {
+    width: 280px; /* same as audio width */
+    height: 3px;
+    background-color:rgb(167, 167, 167);
+    border-radius: 2.5px;
+    display: block;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+/* Progress fill */
+.progress-bar {
+    height: 100%;
+    width: 0%; /* start empty */
+    background-color: #FF0590;
+    position: relative;
+    border-radius: 2.5px;
+    cursor: pointer;
+    padding: 0px;
+}
+.progress-container:hover span{
+  width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color:#FF0590;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%); /* center the knob */
+}
+</style>
+</head>
+<body>
+    <div class="song-details" align="center">
+            <div class="card-first">
+            {%if popular %}
+               {% for i in popular %}
+               {% with audio_id=i.Song_Id|add:t_length%}
+	            <img src="{{i.Song_Image}}" alt="Song Image" class="song-image1">
+            <br>
+            <ul class="sn-an-bu">
+            <li><h1 class="sn">{{i.Song_name}}</h1></li>
+            <br>
+            <li><p class="an">{{i.Artist_name}}</p></li>
+            <br>
+            <li class="duration"><b>Duration : </b><span id="duration{{ audio_id}}">--:--</span></li>
+            </ul>
+            </div>
+            <div class="card-second">
+                <div>
+                <ul class="progress-wrapper" align="left">
+                        <div class="progress-container" id="progressContainer{{audio_id}}">
+                            <div class="progress-bar" id="audioProgress{{audio_id}}">
+                                <span id="knob{{audio_id}}"></span>
+                            </div>
+                        </div>
+                        </ul>
+            </div>
+               <button class="play" onclick="togglePlay('audio{{audio_id}}', this)">
+                        <span class="material-icons">play_arrow</span>
+                </button>
+
+                <button class="like" onclick="toggleLike(this)"><span class="material-icons like-btn">favorite</span></button>
+
+               <button type="button" class="playlist"><span class="material-icons">add_circle</span></button>
+               <a href="{{i.Song_Audio.url}}" download><button class="downlod-btn"> <span class="material-icons">download</span></button></a>
+               </div>
+            {%endwith%}
+            {%endfor%}
+            
+            {%elif trending%}
+            {% for i in trending%}
+	        <img src="{{i.Song_Image}}" alt="Song Image" class="song-image1">
+            <br>
+            <ul class="sn-an-bu">
+            <li><h1 class="sn">{{i.Song_name}}</h1></li>
+            <br>
+            <li><p class="an">{{i.Artist_name}}</p></li>
+            <br>
+            <li class="duration"><b>Duration : </b><span id="duration{{ i.Song_Id }}">--:--</span></li>
+            </ul>
+            </div>
+            <div class="card-second">
+                <div>
+                <ul class="progress-wrapper" align="left">
+                        <div class="progress-container" id="progressContainer{{i.Song_Id}}">
+                            <div class="progress-bar" id="audioProgress{{i.Song_Id}}">
+                                <span id="knob{{i.Song_Id}}"></span>
+                            </div>
+                        </div>
+                        </ul>
+            </div>
+               <button class="play" onclick="togglePlay('audio{{i.Song_Id}}', this)">
+                        <span class="material-icons">play_arrow</span>
+                </button>
+
+                <button class="like" onclick="toggleLike(this)"><span class="material-icons like-btn">favorite</span></button>
+
+               <button type="button" class="playlist"><span class="material-icons">add_circle</span></button>
+               <a href="{{i.Song_Audio.url}}" download><button class="downlod-btn"> <span class="material-icons">download</span></button></a>
+               </div>
+            {%endfor%} 
+    {%elif marathi%}
+            {% for i in marathi%}
+            {% with audio_id=i.Song_Id|add:p_length%}
+	        <img src="{{i.Song_Image}}" alt="Song Image" class="song-image1">
+            <br>
+            <ul class="sn-an-bu">
+            <li><h1 class="sn">{{i.Song_name}}</h1></li>
+            <br>
+            <li><p class="an">{{i.Artist_name}}</p></li>
+            <br>
+            <li class="duration"><b>Duration : </b><span id="duration{{ audio_id}}">--:--</span></li>
+            </ul>
+            </div>
+            <div class="card-second">
+                <div>
+                <ul class="progress-wrapper" align="left">
+                        <div class="progress-container" id="progressContainer{{audio_id}}">
+                            <div class="progress-bar" id="audioProgress{{audio_id}}">
+                                <span id="knob{{audio_id}}"></span>
+                            </div>
+                        </div>
+                        </ul>
+            </div>
+               <button class="play" onclick="togglePlay('audio{{audio_id}}', this)">
+                        <span class="material-icons">play_arrow</span>
+                </button>
+
+                <button class="like" onclick="toggleLike(this)"><span class="material-icons like-btn">favorite</span></button>
+
+               <button type="button" class="playlist"><span class="material-icons">add_circle</span></button>
+               <a href="{{i.Song_Audio.url}}" download><button class="downlod-btn"> <span class="material-icons">download</span></button></a>
+               </div>
+               {%endwith%}
+            {%endfor%}
+            {%else%}
+            <img src="https://i.scdn.co/image/ab67616d0000b273a7e251b543c77a6ed356dfbe" alt="Song Image" class="song-image1">
+            <br>
+            <ul class="sn-an-bu">
+            <li><h1 class="sn">Saiyaara</h1></li>
+            <br>
+            <li><p class="an">Tanishk Bagchi, Faheem A, Arslan N ,Irshad Kamil</p></li>
+            <br>
+            <li class="duration"><b>Duration : </b><span id="duration1">--:--</span></li>
+            </ul>
+            </div>
+            <div class="card-second">
+                <div>
+                <ul class="progress-wrapper" align="left">
+                        <div class="progress-container" id="progressContainer1">
+                            <div class="progress-bar" id="audioProgress1">
+                                <span id="knob1"></span>
+                            </div>
+                        </div>
+                        </ul>
+            </div>
+               <button class="play" onclick="togglePlay('audio1', this)">
+                        <span class="material-icons">play_arrow</span>
+                </button>
+
+                <button class="like" onclick="toggleLike(this)"><span class="material-icons like-btn">favorite</span></button>
+
+               <button type="button" class="playlist"><span class="material-icons">add_circle</span></button>
+               <a href="{{i.Song_Audio.url}}" download><button class="downlod-btn"> <span class="material-icons">download</span></button></a>
+               </div>
+    {% endif %} 
+    
+
+</div>
+</div>
+
+<script>
+    window.toggleLike = function(likeBtn) {
+        likeBtn.classList.toggle("red");
+    };
+window.togglePlay = function (audioId, btn) {
+    let audio = document.getElementById(audioId);
+    if (!audio) return;
+
+    let icon = btn.querySelector(".material-icons");
+    let container = btn.closest(".song-details") || document;
+    let progressContainer = container.querySelector(".progress-container");
+    let progressBar = container.querySelector(".progress-bar");
+     let knob = progressBar.querySelector("span");
+
+    // Pause all other audios & reset UI
+    document.querySelectorAll("audio").forEach(a => {
+        if (a.id !== audioId) {
+            a.pause();
+            a.currentTime = 0;
+        }
+    });
+    document.querySelectorAll(".play .material-icons").forEach(i => i.textContent = "play_arrow");
+    document.querySelectorAll(".progress-bar").forEach(bar => bar.style.width = "0%");
+    document.querySelectorAll(".progress-container").forEach(pc => pc.style.display = "block");
+
+     if (audio.paused) {
+        audio.play();
+        icon.textContent = "pause";
+    } else {
+        audio.pause();
+        icon.textContent = "play_arrow";
+    }
+
+    // Update progress visually
+     audio.ontimeupdate = function () {
+        if (!isNaN(audio.duration)) {
+            let percent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percent + "%";
+            if (knob) knob.style.left = "100%";
+        }
+    };
+
+    // Seek on click
+    if (progressContainer) {
+        progressContainer.onclick = function (e) {
+            let rect = progressContainer.getBoundingClientRect();
+            let clickX = e.clientX - rect.left;
+            let percent = clickX / rect.width;
+            audio.currentTime = percent * audio.duration;
+        };
+    }
+
+    // Reset when ended
+    audio.onended = function () {
+        icon.textContent = "play_arrow";
+        if (progressBar) progressBar.style.width = "0%";
+        if (knob) knob.style.left = "0%";
+        if (progressContainer) progressContainer.style.display = "none";
+    };
+};
+
+// Current time display
+document.querySelectorAll("audio").forEach((audio, index) => {
+    let timeCell = document.getElementById(`time${index + 1}`);
+    if (!timeCell) return;
+
+    audio.ontimeupdate = function () {
+        let minutes = Math.floor(audio.currentTime / 60);
+        let seconds = Math.floor(audio.currentTime % 60);
+        if (seconds < 10) seconds = "0" + seconds;
+        timeCell.textContent = `${minutes}:${seconds}`;
+    };
+});
+
+document.querySelectorAll("audio").forEach(audio => {
+    let durationCell = document.getElementById(`duration${audio.id.replace('audio','')}`);
+    if (!durationCell) return;
+
+    audio.onloadedmetadata = function () {
+        let minutes = Math.floor(audio.duration / 60);
+        let seconds = Math.floor(audio.duration % 60);
+        if (seconds < 10) seconds = "0" + seconds;
+        durationCell.textContent = `${minutes}:${seconds}`;
+    };
+});
+
+</script>
+
+</body>
+</html>

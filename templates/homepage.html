@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/homepage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="homepage-content" id="homepagecontent">
+  <div class="menu-section" id="menu-section">{%include 'menu.html'%}</div>
+  <div class="main-section">{%include 'main.html'%}</div>
+	<div class="header-section">{%include 'header.html'%}</div>
+  <div class="SongDetailsPage">
+    {% include 'TrendingDetails.html'%}
+  </div>
+	</div> 
+    {%include 'login.html'%}
+    {% include 'signup.html'%}
+
+
+  <script>
+    const showBtn = document.getElementById("openLogin");
+    const hideBtn = document.getElementById("closeLogin");
+    const logoinBox = document.getElementById("loginPopup");
+    const homepage = document.getElementById("homepagecontent");
+
+      showBtn.addEventListener("click", () => {
+      logoinBox.style.display = "block";
+      homepage.classList.add("dimmed");
+    });
+
+    hideBtn.addEventListener("click", () => {
+      logoinBox.style.display = "none";
+      homepage.classList.remove("dimmed");
+    });
+
+
+    const showBtn1 = document.getElementById("opensignup");
+    const hideBtn1 = document.getElementById("closesignup");
+    const SingupBox = document.getElementById("signupPopup");
+    const homepage1 = document.getElementById("homepagecontent");
+
+    showBtn1.addEventListener("click", () => {
+      SingupBox.style.display = "block";
+      homepage.classList.add("dimmed");
+    });
+
+    hideBtn1.addEventListener("click", () => {
+     SingupBox.style.display = "none";
+      homepage.classList.remove("dimmed");
+    });
+</script>
+<script src="/static/script.js"></script>
+</body>
+</html>

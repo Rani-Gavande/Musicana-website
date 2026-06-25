@@ -1,0 +1,100 @@
+:root{ --sidebar-btn: rgb(45,44,44);
+	 --website-color:#FF0590; 
+	 --main-section-color:rgb(14,14,14); 
+	} 
+	body{ 
+		background-color: black; 
+		margin:0px; margin-bottom: 100px; 
+		margin-right:40px; font-family: serif; 
+	} 
+	.homepage-content{ 
+		display: grid; 
+		position: fixed; 
+		background-color:black; 
+		width: 100vw; 
+		height: 800px; 
+		grid-template-columns:auto 300px; 
+		grid-template-rows: 55px auto 100px; 
+		grid-gap:0px; 
+		margin-bottom: 100px; 
+	} 
+	.header-section{ 
+		position: fixed; 
+		background-color: gray; 
+		grid-row: 1/2; 
+		grid-column: 1/2; 
+		width: 100%; 
+		height: 55px; 
+		z-index: 1000; 
+	} 
+	.menu-section{
+		position: relative;
+		margin-top: 55px;
+		background-color: transparent;
+		transform: translateX(-250px); 
+		transition: transform 0.3s ease; 
+		z-index: 2000; 
+		height: 300px;
+	} 
+	.main-section{ 
+			height:100vh; 
+			overflow:auto; 
+			background-color:var(--main-section-color); 
+			grid-row:2; 
+			grid-column:1/2; 
+			padding-left: 40px; 
+			padding-bottom:100px ; 
+			z-index: 1; 
+			background-color: black;
+		}  
+		.dimmed { 
+			filter: brightness(50%);
+			/*opacity: 0.5; 
+			pointer-events: none; 
+			background-color:rgb(255, 255, 255); */
+		} 
+		.login-page{ 
+			display: none; 
+			position:fixed; 
+			top:20px; transform: 
+			translateX(100%); 
+			width:420px; 
+			height: 100vh; 
+			max-height: 580px; 
+			overflow-y: auto; 
+			scrollbar-width: none; 
+			background-color: rgb(14, 14, 14); 
+		} 
+		.signup-page{ 
+			display: none; 
+			position:fixed; 
+			top:20px;
+			transform: translateX(100%); 
+			width:420px; height: 100vh;
+			max-height: 580px; 
+			overflow-y: auto;
+			scrollbar-width: none; 
+			background-color: rgb(14, 14, 14); 
+		} 
+		.close-btn{ 
+			position: absolute; 
+			margin-top: 5px; 
+			margin-left: 180px; 
+			font-size: 30px; 
+			color: white; 
+			cursor: pointer;
+		 } 
+		 .SongDetailsPages{ 
+			display: block; 
+			margin-top: 10x; 
+			margin-left: 10px; 
+			margin-right: 10px; 
+			height: 300px;
+			width: 300px; 
+			color:white; 
+			border-radius: 10px; 
+			background: linear-gradient(to bottom, #696969,black); 
+			grid-row:2;
+			 grid-column:2/3;
+			z-index: -1;
+		 }

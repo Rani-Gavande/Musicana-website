@@ -1,0 +1,152 @@
+:root{
+    --sidebar-btn: rgb(45,44,44);
+    --website-color:#FF0590;
+    --main-section-color:rgb(14,14,14);
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: serif;
+}
+.header{
+    position: fixed;    
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 55px;
+    justify-content:space-between;
+    align-items: center;
+    margin: 0px;
+    width:100%;
+    background-color: black;
+    color:white;
+}
+.left-side{
+    display: flex;
+    align-items: center;
+}
+.sidebar-icon{
+    margin-left: 20px;
+    color:white;
+    border-radius: 50%;
+}
+.sidebar-icon span {
+    position: fixed;
+    top: 2px;
+    left: 10px;
+    cursor: pointer;
+}
+/*====== material-symbols-outlined in between sidebar-icon span======*/
+.sidebar-icon span.material-symbols-outlined{
+    margin-top: 6px;
+    font-size:25px;
+    color: white;
+    padding: 10px;
+}
+/*hover for siderbar icon when cursor pointed*/
+.sidebar-icon:hover span{
+    border-radius: 50%;
+    cursor: pointer;
+    background-color:var(--sidebar-btn);
+}
+.music-logo{
+    width:50px;
+    height: 50px;
+    margin-left: 40px;
+    margin-top: 15px;
+}
+
+.music-logo{
+    width:55px;
+    height:55px; 
+}
+.musicana{
+    margin-top: 0px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bolder;
+            font-family: 'Great Vibes', cursive;
+}
+.search-wrapper {
+    position: relative;
+    width: 450px;
+    margin-left: 30px;
+}
+
+.search-wrapper input{
+    position: sticky;
+    width: 100%;
+    padding: 8px 40px 8px 16px; /* right padding added for icon space */
+    border: 1px solid rgb(254, 253, 253);
+    border-radius: 30px;
+    background: transparent;
+    color: #ffffff;
+    outline: none;
+
+}
+.search-wrapper input::placeholder{
+    color:rgb(167, 166, 166);
+}
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    cursor: pointer;
+}
+#searchBtn{
+    cursor:help;
+}
+.nav {
+   
+    margin-top: 10px;
+}
+.nav ul {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    padding: 0;
+    margin: 0;
+    margin-right: 40px;
+}
+.nav li {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: white;
+    padding: 6px 20px;
+    transition: .5s;
+}
+a {
+    text-decoration: none;
+    color:white;
+}
+.nav li:hover {
+    color:white;
+}
+.nav li a:hover {
+    text-decoration: none;
+}
+.nav li span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-bottom: 2px solid var(--website-color);
+    border-radius: 15px;
+    transform: scale(0) translateY(50px);
+    opacity: 0;
+    transition: .5s;
+}
+.nav li:hover span {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+
+
+

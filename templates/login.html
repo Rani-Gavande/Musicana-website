@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>login page</title>
+    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/script.js">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+      
+    </style>
+</head>
+<body>
+	<div class="login-page"  id="loginPopup" align="center">
+        <form action="/login/" method="post">
+            {%csrf_token%}
+        <label class="close-btn">
+            <span class="material-symbols-outlined" id="closeLogin" class="close-btn">close</span>
+        </label>
+
+		<div class="logo-title" align="center">
+		    <img src="/static/musiclogo4.png" class="musiclogo" alt="musiclogo" align="center">
+            <br>
+		    <lable class="login-title">Login to <span>musicana</span></lable>
+		</div>
+		<div class="section-btns" align="center">
+            <div class="select-btn" align="center">
+                <li>
+                    <button class="google-email">
+                        <span><img src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg" align="center" class="google-icon"></span>Continue with Google
+                    </button>
+                </li>
+            </div>
+            <div class="select-btn" align="center">
+                <li><button class="phone-no">Continue with Phone Number</button></li>
+            </div>
+		</div>
+		<div class="or-divider" align="center"><span>or</span></div>
+		<div class="input-group" align="center">
+          <input type="text" name="user" required>
+          <label for="">Username</label>
+        </div>
+        <div class="input-group" align="center">
+          <input type="password" name="pass" required>
+          <label for="">Password</label>
+        </div>
+        <div class="forgot-signup" align="center">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <div align="center">
+            <button type="submit" class="login-btn" >
+                Login<span></span>
+            </button>
+            <p class="signup-text" >
+                Don’t have an account? <a href="/">Sign up.</a>
+            </p>
+	    </div>
+        </form>
+    </div>
+</body>
+</html>

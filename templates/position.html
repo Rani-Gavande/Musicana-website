@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> ... </head>
+<body>
+  <div class="album">
+    <img class="cover" id="coverImg" src="" alt="">
+    <div class="title" id="artistName"></div>
+    <ul class="tracks" id="trackList"></ul>
+    <audio id="player" controls>
+      <source id="audioSource" src="" type="audio/mpeg">
+      Your browser doesn't support audio.
+    </audio>
+  </div>
+
+  <script>
+    const data = {
+      arijit_singh: {
+        name: 'Arijit Singh',
+        cover: 'https://tbn...',
+        tracks: [
+          { title:'Tum Hi Ho', src:'tumhiho.mp3' },
+          { title:'Dhun', src:'dhun.mp3' }
+        ]
+      },
+      armaan_malik: {
+        name: 'Armaan Malik',
+        cover: 'https://wallpapers.com/...jpg',
+        tracks: [
+          { title:'Song A', src:'a.mp3' },
+          { title:'Song B', src:'b.mp3' }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const artistID = params.get('artist');
+    const info = data[artistID];
+    if (!info) {
+      document.body.innerHTML = '<p>Artist not found</p>';
+      throw new Error('Unknown artist');
+    }
+
+    document.getElementById('artistName').innerText = info.name;
+    document.getElementById('coverImg').src = info.cover;
+
+    const ul = document.getElementById('trackList');
+    info.tracks.forEach(t => {
+      const li = document.createElement('li');
+      li.className = 'track';
+      li.innerHTML = `<span>${t.title}</span><button data-src="${t.src}">Play</button>`;
+      ul.appendChild(li);
+    });
+
+    document.querySelectorAll('.track button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('audioSource').src = btn.dataset.src;
+        const audio = document.getElementById('player');
+        audio.load();
+        audio.play();
+      });
+    });
+  </script>
+</body>
+</html>

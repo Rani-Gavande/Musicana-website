@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Pages</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Basic reset */
+        body {
+            background-color: black;
+            font-family:serif;
+            
+        }
+        .main{
+            background-color:black;
+            width:100%;
+            height: 100%;
+            overflow-y:auto;
+        }
+        .main::-webkit-scrollbar{
+            width:0px;
+        }
+        .main:hover::-webkit-scrollbar{
+            width:8px;
+        }
+        .main::-webkit-scrollbar-tarck{
+            background: #1e1e1e;
+        }
+        .main::-webkit-scrollbar-thumb{
+            background-color: #888;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        
+         .main::-webkit-scrollbar-thumb:hover{
+            background-color: #aaa;
+        }
+        /* SLIDER STYLES */
+        .slider {
+            overflow: hidden;
+            width:800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .slider-section{
+            overflow: none;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides div img {
+            border-radius: 20px;
+        }
+        .Song-content{
+            padding-right:60px ;
+        }
+        /* TEXT & BUTTON HEADER */
+        .line-text {
+            display: flex;
+            justify-content: space-between; /* Title left, button right */
+            align-items: center;
+            padding: 0 20px;
+            margin: 20px 0;
+        }
+
+        .line-text a {
+            font-size: 25px;
+            font-family: serif;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .seebtn {
+            color:white;
+            margin-right: 30px;
+            font-size: 20px;
+        }
+        .arrow-seebtn{
+            font-weight: bold;
+            font-size: 20px;
+            position: relative;
+            top: 5px;
+            left: 8px;
+        }
+        .container-section{
+            position: relative;
+        }
+        /* CONTAINER GRID STYLES */
+        .container {
+            position: relative;
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px;
+            white-space: nowrap;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card-song {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 100%;
+            border-radius: 8px;
+            color:white;
+        }
+        .card-song:hover{
+            background-color: #1c1c1c;
+        }
+        .card-song div {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container div img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+        }
+        
+        .card-song .Song-title{
+           width:200px;
+           height: 100%;
+           font-size: 20px;
+           display: inline-block;      
+           max-width: 200px;           
+           white-space: normal;        
+           word-wrap: break-word;      
+           overflow-wrap: break-word; 
+           text-align: center;         
+           padding: 5px;               
+           border-radius: 10px; 
+        }
+        .Artist-section{
+        	display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 100%;
+            border-radius: 8px;
+            color:white;
+        }
+        .Artist-section div {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }  
+        .Artist-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+        }
+         .Artist-img:hover{
+            border:3px solid #FF0590;
+            width: 170px;
+            height: 180px;
+        }
+        
+         .Artist-section .Song-title{
+           width:200px;
+           height: 100%;
+           font-size: 20px;
+           display: inline-block;      
+           max-width: 200px;           
+           white-space: normal;        
+           word-wrap: break-word;      
+           overflow-wrap: break-word; 
+           text-align: center;         
+           padding: 5px;               
+           border-radius: 10px; 
+        }
+        .Song-audio{
+           display: none;
+        }
+        .container div:hover + audio{
+           display: block;
+           width: 300px;
+           left: 100px;
+           bottom: 0px;
+        }
+        .card-song .Song-title{
+           width:200px;
+           height: 100%;
+           font-size: 20px;
+           display: inline-block;      
+           max-width: 200px;           
+           white-space: normal;        
+           word-wrap: break-word;      
+           overflow-wrap: break-word; 
+           text-align: center;         
+           padding: 5px;               
+           border-radius: 10px; 
+        }
+        .Song-title a{
+            font-family: serif;
+            text-decoration: none;
+            color: rgb(245, 243, 243);
+        }
+        .Song-title a:hover{
+            text-decoration:underline;
+            color:white;
+        }
+        .last{
+            width:100%;
+            height: 300px;
+            background:transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        ->
+       <!-- SLIDER -->
+        <div class="slider-section">
+        <div class="slider">
+            <div class="slides" id="slides"> 
+                <div class="slide">
+                    <img src="https://i.ytimg.com/vi/BSJa1UytM8w/hq720.jpg?sqp=-…BACGAY4AUAB&rs=AOn4CLBDmqgQmMwX08x45x2v3DRwBnRY5Q" width="800px" height="300px">
+                </div>
+                <div class="slide"><img src="https://i.ytimg.com/vi/GRq6nXiJdug/hq720.jpg?sqp=-…BACGAY4AUAB&rs=AOn4CLBM65hZWZDDunmWhBgt256v1t00Xg" width="800px" height="300px"></div>
+                <div class="slide"><img src="https://i.ytimg.com/vi/Db5PpWOH7Z8/hq720.jpg?sqp=-…BACGAY4AUAB&rs=AOn4CLAcW4Cv9TlKLURTMSUjcGJPxKOWjA" alt="Image 3" width="800px" height="300px"/></div>
+                <div class="slide">
+                    <img src="https://i.ytimg.com/vi/BSJa1UytM8w/hq720.jpg?sqp=-…BACGAY4AUAB&rs=AOn4CLBDmqgQmMwX08x45x2v3DRwBnRY5Q" width="800px" height="300px">
+                </div>
+            </div>
+        </div>
+        </div>
+<!-- SECTION: TRENDING NOW-->
+ <div class="container-section">
+        <div class="line-text">
+            <a href="#">Trending-Song</a> 
+            <h1 class="seebtn">Show More<span class="material-icons arrow-seebtn ">east</span></h1>
+        </div>
+        <div class="container">
+            {%for i in t %}
+            <div class="card-song trending ">
+                <div class="song-audio" >
+                    <img src="{{i.Song_Image}}" alt="Item" class="clickable-image" data-audio="audio{{ forloop.counter }}">
+                    <audio controls id="audio{{ forloop.counter }}" src="{{i.Song_Audio.url}}" type="audio/mp3" class="Song-audio">
+                    </audio>
+                </div>
+                <div class="Song-title">
+                <a href="/?id={{i.Song_Id}} ">{{ i.Song_name }}</a>
+                </div>
+            </div>
+             {%endfor%}
+          </div>
+    <!-- SECTION: TRENDING NOW  END -->
+
+    <!-- SECTION: POPULAR SONG -->
+        <div class="line-text">
+            <a href="#">Popular-Song</a> 
+            <h1 class="seebtn">Show More<span class="material-icons arrow-seebtn ">east</span></h1>
+        </div>
+        <div class="container">
+            
+             {%for i in p %}
+              {% with audio_id=forloop.counter|add:t_length %}
+            <div class="card-song">
+                <div class="song-audio">
+                    <img src="{{i.Song_Image}}" alt="Item" class="clickable-image" data-audio="audio{{ audio_id }} ">
+                    <audio controls id="audio{{ audio_id }}" src="{{i.Song_Audio.url}}" type="audio/mp3" class="Song-audio">
+                    </audio>
+                </div>
+                <div class="Song-title">
+                    <a href="/?p_id={{ i.Song_Id }}">{{ i.Song_name }}</a>
+                </div>
+            </div>
+             {% endwith %}
+             {%endfor%}
+        <!-- Repeat as needed -->
+        </div>
+       <div class="line-text">
+            <a href="#">Artist</a> 
+            <h1 class="seebtn">Show More<span class="material-icons arrow-seebtn ">east</span></h1>
+        </div>
+        <div class="container">
+            {%for i in a%}
+            <div class="Artist-section">
+                <div class="song-audio">
+                    <img src="{{i.Artist_Image}}" alt="Item"style="border-radius:50%;" class="Artist-img">
+                </div>
+                <div class="Song-title">
+                    <a href="ArtistDetails/{{i.id}} ">{{ i.Artist_name }}</a>
+                </div>
+                <!--<label class="song-title">{{i.Artist_name}}</label>-->
+            </div>
+            {%endfor%}
+        </div>
+<!--************************* SECTION: Artist end ************************************-->
+<!-- *******************************SECTION: ALBUMS *****************************************-->
+        <div class="line-text">
+            <a href="#">Popular-Album</a> 
+            <h1 class="seebtn">Show More<span class="material-icons arrow-seebtn ">east</span></h1>
+        </div>
+        <div class="container">
+            {%for i in a1 %}
+            <div class="card-song">
+                <div>
+                    <img src="{{i.Album_Image}}" alt="Item">
+                </div>
+                <div class="Song-title">
+                <a href="AlbumDetails/{{i.id}} ">{{i.Album_name}}</a>
+            </div>
+            </div>
+            {%endfor%}
+    </div>
+    <!-- SECTION: MARATHI -->
+        <div class="line-text">
+            <a href="#">Marathi-Song</a> 
+            <h1 class="seebtn">Show More<span class="material-icons arrow-seebtn ">east</span></h1>
+        </div>
+        <div class="container">
+
+            {%for i in m %}
+            {% with audio_id=forloop.counter|add:p_length %}
+            <div class="card-song">
+                <div class="song-audio">
+                    <img src="{{i.Song_Image}}" alt="Item" class="clickable-image" data-audio="audio{{ audio_id }}">
+                    <audio controls id="audio{{ audio_id }}" src="{{i.Song_Audio.url}}" type="audio/mp3" class="Song-audio">
+                    </audio>
+                </div>
+                <div class="Song-title">
+                    <a href="/?m_id={{i.Song_Id}}">{{ i.Song_name }}</a>
+                </div>
+            </div>
+            {% endwith %}
+             {%endfor%} 
+        </div>
+        </div>
+<div class="last"></div>
+    <!-- SECTION: TAMIL -->
+    <!-- FOOTER LINKS -->
+</div>
+<script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<html>
+    <head>
+        <title>Artist</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <style>
+            body{
+                background-color: black;
+                color:white;
+            }
+             .Back-btn{
+    margin-top:50px;
+    background-color:#FF0590;
+    width: 80px;
+    height: 30px;
+    margin-left: 600px;
+    padding-left: 0px;
+    padding-left:10px ;
+    border-radius: 10px;
+
+}
+.Back-btn a{ 
+    text-decoration: none;
+    color:black;
+    font-size: 20px;
+    
+}
+.Back-btn .material-symbols-outlined{
+    position: relative;
+    top:3px;
+    font-size: 20px;
+    color: black;
+}
+            .Artist-Content{
+                margin-top: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+                height: 100%;
+                color:white;
+                border-radius: 10px;
+                background: linear-gradient(to bottom, #6ce9f9,black);
+            }
+            .Artist-Info{
+                position: relative;
+                border-radius : 10px 10px 0px 0px;
+                display: flex;
+                height: 250px;
+                background: linear-gradient(to bottom, #475052,#000000);
+            }
+            .Artist-Info img{
+                position: relative;
+                top: 30px;
+                left: 30px;
+                width:180px;
+                height: 180px;
+                border-radius: 50%;
+                
+            }
+               .Sub-Content{
+                margin-right: 10px;
+                width:100%;
+                height: 100vh;
+                background:linear-gradient(to top,#000000);
+               }        
+            .Artist-Song{
+                position: relative;
+                display: grid;
+                grid-template-columns: 60px 100px auto;
+                grid-template-rows: 60px;
+                margin-left: 20px;
+                background-color: white;
+                color:black;
+                z-index: 1100;
+                border-radius: 7px;
+            }
+            .Artist-Song img{
+                left: 0;
+                grid-column: 1;
+                margin-right: 20px;
+                width: 50px;
+                height: 50px;
+                padding: 5px;
+                border-radius: 10px;
+            }
+            ul{
+                margin-top: 50px;
+            }
+            .Artist-na{
+                margin-left: 50px;
+                font-size: 30px;
+            }
+        .song-div {
+        flex: 1;
+        overflow-y: auto;
+    }
+    .song-list {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .song-list th, .song-list td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #333;
+        vertical-align: middle;
+    }
+    .song-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .song-item img {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+    }
+    .song-title {
+        font-size: 16px;
+        color: white;
+    }
+    .song-actions button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    .like.red {
+        color: red;
+    }
+    .song-actions button:hover {
+        opacity: 0.7;
+    }
+    audio {
+        display: none;
+    }
+    .progress-wrapper{
+        display: flex;
+
+    }
+    .progress-container {
+    width: 300px; /* same as audio width */
+    height: 3px;
+    background-color: #eee;
+    margin-top: 10px;
+    position: relative;
+    border-radius: 2.5px;
+    margin-left: 15px;
+    margin-right:10px ;
+     display: none;
+     cursor: pointer;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 100%; /* start empty */
+    background-color: deeppink;
+    position: relative;
+    border-radius: 2.5px;
+    cursor: pointer;
+}
+
+.progress-bar span{
+  width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color:deeppink;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%); /* center the knob */
+    left: 0;
+}
+        </style>
+    </head>
+    <body bgcolor="green">
+        <div class="Artist-Content">
+            <div class="Artist-Info">
+                <img src="{{a.Artist_Image}}">
+                <ul>
+                <h1 class="Artist-na">{{a.Artist_name}}</h1>
+                <h1 class="Artist-na" style="color: white; font-size: 20px;">{{a.Listener}}<span style="font-size: 20px; color:deeppink">  Listener</span></h1>
+                </ul>
+                 <P class="Back-btn" ><a href="/"> Back<span class="material-symbols-outlined">arrow_forward_ios</span></a></P>
+                </div>
+                <div class="Sub-content">
+                    <div class="song-div">
+                        <table class="song-list" align="center">
+                            <thead>
+                                <tr align="center">
+                                    <th>#</th>
+                                    <th style="text-align: left;">Title</th>
+                                    <th>Plays</th>
+                                    <th>Actions</th>
+                                </tr>
+                             </thead>
+                             {% for i in s %}
+                                <tr>
+                        <td>{{i.Song_Id}}</td>
+                        <td align="center">
+                            <div class="song-item">
+                                <img src="{{i.Song_Image}}">
+                                <div class="song-title">{{i.Song_name}}</div>
+                            </div>
+                        </td>
+                        <td class="song-actions">
+                            <button class="play" onclick="togglePlay('audio{{ forloop.counter }}', this)">
+                                <span class="material-icons">play_arrow</span>
+                            </button>
+                            <button class="like" onclick="toggleLike(this)"><span class="material-icons like-btn">favorite</span></button>
+                            <a href="{{i.Song_Audio.url}}" download><button> <span class="material-icons">download</span></button></a>
+                        </td>
+                        <td style="align-items: center;">
+                             <ul class="progress-wrapper">
+                                    <span id="time{{ forloop.counter }}">0:00</span>
+                                <div class="progress-container" id="progressContainer{{ forloop.counter }}">
+                                    <div class="progress-bar" id="audioProgress{{ forloop.counter }}">
+                                        <span id="knob{{ forloop.counter }}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <span class="time-separator" style="margin: 0 4px;">/</span>
+                            <span id="duration{{ forloop.counter }}">--:--</span>
+                        </ul>
+                        </td>
+
+
+
+                        <audio controls id="audio{{ forloop.counter }}">
+                            <source src="{{ i.Song_Audio.url }}" type="audio/mpeg">
+                        </audio>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+<script> 
+document.addEventListener("DOMContentLoaded", () => {
+    // Like button 
+    window.toggleLike = function(likeBtn) {
+        likeBtn.classList.toggle("red");
+    };
+
+    // Play/Pause with Icons
+   window.togglePlay = function (audioId, btn) {
+    let audio = document.getElementById(audioId);
+    if (!audio) return;
+
+    // Pause all other audios & reset
+    document.querySelectorAll("audio").forEach(a => {
+        if (a.id !== audioId) {
+            a.pause();
+            a.currentTime = 0;
+        }
+    });
+
+    document.querySelectorAll(".play .material-icons").forEach(icon => {
+        icon.textContent = "play_arrow";
+    });
+
+    // Reset all progress bars
+    document.querySelectorAll(".progress-bar").forEach(bar => {
+        bar.style.width = "0%";
+    });
+
+    // Show all separators
+  document.querySelectorAll(".progress-container").forEach(bar => {
+           bar.style.display = "none";
+
+        });
+
+        // Show all separators
+        document.querySelectorAll(".time-separator").forEach(sep => {
+            sep.style.display = "inline";
+        });
+
+
+    let icon = btn.querySelector(".material-icons");
+    let row = btn.closest("tr");
+    let progressContainer = row.querySelector(".progress-container");
+    let progressBar = row.querySelector(".progress-bar");
+    let knob = progressBar.querySelector("span"); // draggable knob
+    let separator = row.querySelector(".time-separator");
+
+    // Play / pause
+    if (audio.paused) {
+        audio.play();
+        icon.textContent = "pause";
+        progressContainer.style.display = "block";
+        if (separator) separator.style.display = "none";
+    } else {
+        audio.pause();
+        icon.textContent = "play_arrow";
+        progressContainer.style.display = "block";
+        if (separator) separator.style.display = "inline";
+    }
+
+    // Update progress visually
+    audio.ontimeupdate = function () {
+        if (!isNaN(audio.duration)) {
+            let percent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percent + "%";
+            if (knob) knob.style.left = "100%";
+        }
+    }
+
+    // Seek on click
+    if (progressContainer) {
+        progressContainer.onclick = function (e) {
+            let rect = progressContainer.getBoundingClientRect();
+            let clickX = e.clientX - rect.left;
+            let percent = clickX / rect.width;
+            audio.currentTime = percent * audio.duration;
+        };
+    }
+        
+    // Reset when ended
+    audio.onended = function () {
+        icon.textContent = "play_arrow";
+        progressBar.style.width = "0%";
+        if (knob) knob.style.left = "0%";
+         progressContainer.style.display = "block";
+        if (separator) separator.style.display = "inline";
+    };
+};
+
+// Current time display
+document.querySelectorAll("audio").forEach((audio, index) => {
+    let timeCell = document.getElementById(`time${index + 1}`);
+    if (!timeCell) return;
+
+    audio.ontimeupdate = function () {
+        let minutes = Math.floor(audio.currentTime / 60);
+        let seconds = Math.floor(audio.currentTime % 60);
+        if (seconds < 10) seconds = "0" + seconds;
+        timeCell.textContent = `${minutes}:${seconds}`;
+    };
+});
+
+// Total duration display
+document.querySelectorAll("audio").forEach((audio, index) => {
+    let durationCell = document.getElementById(`duration${index + 1}`);
+    if (!durationCell) return;
+
+    audio.onloadedmetadata = function () {
+        let minutes = Math.floor(audio.duration / 60);
+        let seconds = Math.floor(audio.duration % 60);
+        if (seconds < 10) seconds = "0" + seconds;
+        durationCell.textContent = `${minutes}:${seconds}`;
+    };
+});
+});
+
+</script>
+
+    </body>
+</html>

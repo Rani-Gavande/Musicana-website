@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile-page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body{
+            background:black;
+            color: white;
+            font-family: serif;
+            display: flex;
+            
+        }
+        .Back-btn{
+    top:10px;
+    background-color:#FF0590;
+    width: 100px;
+    height: 30px;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-radius: 10px;
+
+}
+.Back-btn a{ 
+    text-decoration: none;
+    color:black;
+    font-size: 20px;
+    
+}
+.Back-btn .material-symbols-outlined{
+    position: relative;
+    top:3px;
+    font-size: 20px;
+    color: black;
+}
+        .profile-content{
+            position: relative;
+            margin-top: 10px;
+            color:white;
+            width:400px;
+            height: 550px;
+            margin: auto;
+            border-radius: 20px;
+            background:#1e1e1e;   
+        }
+        .profile-Details{
+            color: white;
+            display: flex;
+            width:300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .profile-image img{
+            width:80px;
+            height: 80px;
+            border-radius: 50px;
+            background-color: white;
+            margin-top: 13px;
+            margin-right: 10px;
+        }
+        ul{
+            margin: 0px;
+            margin-top: 30px;
+            padding: 0px;
+            height:100px;
+            margin-left: 10px;
+        }
+        ul li{
+            list-style: none;
+        }
+        .user{
+            font-size: 25px;
+            margin: 0px;
+            margin: bottom 8px;
+        }
+        .email{
+            font-size: 15px;
+            margin: 0px;
+            margin-bottom: 10px;
+        } 
+        li .edit-btn{
+            border: none;
+            outline: none;
+            padding: 8px;
+            color: white;
+            background-color:#ff0368;
+            border-radius: 5px;
+            margin: 0px;
+        }
+        .separator-line span{ 
+            display: block;
+            width: 300px;
+            height: 2px;
+            margin-left:auto;
+            margin-right: auto;
+            background-color: white;
+            margin: 20px 0;
+        }
+        .details1 li{
+	        position: relative;
+            margin-top: 20px;
+            list-style: none;
+            font-size: 20px;
+        }
+        .details1 li span{    
+            align-items: center;
+            margin-left: 60px;
+        }
+        li a{
+            margin-top: 3px;
+	        position: absolute;
+            margin-left: 30px;
+            text-decoration: none;
+            color:white;
+            
+        }
+        .prfile-before{
+            margin-top: 200px;
+            margin-left: 130px;
+        }
+        .profile-login{
+            width:100px;
+            height: 40px;
+            background-color:#FF0590;
+            color:black;
+        }
+        .profile-login a{
+            text-decoration: none;
+            padding: 10px;
+            font-size: 30px;
+            color:black;
+
+        }
+    </style>
+</head>
+<body>
+    <P class="Back-btn" ><span class="material-symbols-outlined back-iocn">
+arrow_back_ios_new
+</span><a href="/"> Back</a></P>
+    <div class="profile-content" style="margin-top: 25px;">
+        <h1 align="center" style="color: #FF0590;">My profile</h1>
+        {%if request.session.logged_in%}
+        {%for i in details%}
+        <div class="profile-Details"> 
+            <div class="profile-image">
+                {% if i.profile %}
+                        <img src="{{ i.profile.url }}?{{ i.id }}">
+                {% else %}
+                    <img src="/static/profileimage1.jpeg">
+                {% endif %}
+            </div>
+            <ul>
+            <li><h1 class="user">{{i.Username}}</h1></li>
+            <li><h1 class="email">{{i.email}}</h1></li>
+            <li><a class="edit-btn" href="EditProfile/">Edit Profile</a></li>
+            </ul>
+        </div>
+        <div class="details1">
+        <li><span class="material-symbols-outlined">library_music</span><a href="#">Playlists</a></li>
+            <li><span class="material-symbols-outlined">favorite</span><a href="#">Liked Songs</a></li>
+            <li><span class="material-symbols-outlined">download</span> <a href="#">Downloads</a></li>
+            </div>
+            <div class="separator-line" align="center"><span></span></div>
+            <div class="details1">
+            <li><span class="material-symbols-outlined">help</span><a href="#">Help</a></li>
+            <li><span class="material-symbols-outlined">workspace_premium</span><a href="#">Premium</a></li>
+            <li><span class="material-symbols-outlined">logout</span> <a href="/logout">Logout</a></li>
+            </div>
+        {%endfor%}
+        {%else%}
+        <div class="profile-before" align="center">
+        <h1  style="color: white; margin-top: 150px;">Login First</h1>
+        <div class="profile-login">
+        <a href="/">Login</a>
+        </div>
+        </div>
+        {%endif%}
+    </div>
+</html>

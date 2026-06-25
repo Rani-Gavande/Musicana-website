@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>login page</title>
+    <link rel="stylesheet" href="/static/signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+      
+    </style>
+</head>
+<body>
+	<div class="signup-page"  id="signupPopup" align="center">
+        <form method="post" action="/sign/">
+            {%csrf_token%}
+        <label class="close-btn">
+            <span class="material-symbols-outlined" id="closesignup" class="close-btn">close</span>
+        </label>
+
+		<div class="logo-title" align="center">
+		    <img src="/static/musiclogo4.png" class="musiclogo" alt="musiclogo" align="center">
+            <br>
+		    <lable class="signup-title">SignUp to start<br><span>Listening</span></lable>
+		</div>
+		<div class="input-group" align="center">
+          <input type="text" required name="user">
+          <label for="">Username</label>
+        </div>
+        <div class="input-group" align="center">
+          <input type="password" name="pass" required>
+          <label for="">Password</label>
+        </div>
+        <div align="left" class="phone-link">
+            <a href="/phone_signup">Use phone number instead.</a>
+        </div>
+        <div align="center">
+            <button type="submit" class="signup-btn" >
+                SignUp<span></span>
+            </button>
+        </div>
+        <div class="or-divider" align="center"><span>or</span></div>
+        <div class="section-btns" align="center">
+            <div class="select-btn" align="center">
+                <li>
+                    <button class="google-email" name="google">
+                        <span><img src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg" align="center" class="google-icon"></span>Continue with Google
+                    </button>
+                </li>
+            </div>
+		</div>
+
+            <p class="signup-text" >
+               Already have an account?<a href="/">Log in.</a>
+            </p>
+          </form>  
+    </div>
+</body>
+</html>
